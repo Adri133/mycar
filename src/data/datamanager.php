@@ -1,7 +1,7 @@
 <?php
 require './src/database/database.php';
 
-function addcar($name, $model, $price, $color) {
+function addcar(string $name, string $model, float $price, string $color) {
     $dbco;
     
     connexion($dbco);
@@ -18,6 +18,22 @@ function addcar($name, $model, $price, $color) {
         $query->execute();
         header('location:http://localhost/formation_php/routeur/?status=success&message=added');
 
+    } catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+
+function select_all_car() {
+    $dbco;
+    
+    connexion($dbco);
+
+    try {
+        $query = $dbco->prepare("SELECT * FROM car");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        
     } catch(PDOException $e){
         echo "Erreur : " . $e->getMessage();
     }
