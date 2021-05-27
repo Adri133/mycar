@@ -1,9 +1,18 @@
 <?php 
     require './src/data/datamanager.php';
-    $cars = select_all_car();
+    require './src/form/sortform.php';
+    
     $size = count($cars);
 ?>
 <h2>Home</h2>
+<form action="" method="get">
+    <span>Short by :</span>
+    <input type="radio" name="sort" value="Expensive">
+    <label for="desc">Expensive</label>
+    <input type="radio" name="sort" value="Cheaper">
+    <label for="asc">Cheaper</label>
+    <input type="submit">
+</form>
 <?php if(isset($_GET['status'])): ?>
 <div class="<?php echo $_GET['status'] ?>"><?php echo $_GET['status'] ?></div>
 <?php endif; ?>
