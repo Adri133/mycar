@@ -38,3 +38,25 @@ function select_all_car() {
         echo "Erreur : " . $e->getMessage();
     }
 }
+
+function select_all_car_sort(string $sort) {
+    $dbco;
+    
+    connexion($dbco);
+
+    try {
+        if($sort=='ASC') {
+            $query = $dbco->prepare("SELECT * FROM car ORDER BY price ASC");
+        } 
+        else
+        {
+            $query = $dbco->prepare("SELECT * FROM car ORDER BY price DESC");
+        }
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        
+    } catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
+}
