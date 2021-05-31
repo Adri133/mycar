@@ -17,7 +17,7 @@ if(isset($_POST['name'], $_POST['model'], $_POST['price'], $_POST['color']))
     }
     else
     {
-        header('location:http://localhost/formation_php/routeur/add&status=missing');
+        header('location:http://localhost/formation_php/routeur/add?status=missing');
     }
 }
 else
